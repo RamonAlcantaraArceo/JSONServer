@@ -1,6 +1,6 @@
 const assert = require('chai').assert;
 const expect = require('chai').expect;
-const should = require('chai').should;
+const should = require('chai').should();
 const request = require("request");
 
 const baseUrl = "https://my-json-server.typicode.com/ramon-alcantara-move/JSONServer"
@@ -52,13 +52,17 @@ describe ('JSON', function(){
             request.get({url: baseUrl + "/posts/1"},
                 function(error, response, body){
                     expect(response.statusCode).to.equal(200);
-                    //should(response.statusCode).to.equal(200);
-                    //response.statusCode.should.be.equal(200);
-                    console.log(body);
+                    response.statusCode.should.equal(200);
+                    var bod = response.body;
+                    console.log(bod);
                     //body.should.incl('world');
-                    expect(response.body).to.be.a('string');
+
+                    expect(bod).to.be.a('string');
+                    bod.should.be.a('string');
+
                     expect(response.body).to.include('hello');
-                    
+                    bod.should.include('world')
+
                     done();
                 }
             )
