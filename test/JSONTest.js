@@ -5,79 +5,88 @@ const request = require("request");
 
 const baseUrl = "https://my-json-server.typicode.com/ramon-alcantara-move/JSONServer"
 
+
 describe ('JSON', function(){
+    var response;
+    var error;
+    var body;
+    function DoTheRequest(postId, done){
+        request.get({url: baseUrl + "/posts/" + postId},
+            function(_error, _response, _body){
+                error = _error;
+                response = _response;
+                body = _body;
+                done();
+            }
+        )
+    }
+
     before(function(){console.log('This is the uber before once.')})
     after(function(){console.log('This is the uber after once.')})
     describe('Dummy', function(){
-        it('Dummy should assert for fun', function(){
-            assert.equal(false, false);
-        })
-        it('Dummy asking for a url', function(done){
-            request.get({url: baseUrl + "/posts"}, 
-                function (error, response, body){
-                    expect(response.statusCode).to.equal(200);
-                    // How do I make this output optional.
-                    //console.log(body);
-                    done();
-                }
-            )
-            assert.equal(true, true);
-        })
-        
-        it('Dummy asking for a specific post', function(done){
-            request.get({url: baseUrl + "/posts/1"},
-                function(error, response, body){
-                    expect(response.statusCode).to.equal(200);
-                    done();
-                }
-            )
-        })
-
-        it('Dummy asking for a non existing post', function(done){
-            request.get({url: baseUrl + "/posts/0"},
-                function(error, response, body){
-                    expect(response.statusCode).to.equal(404);
-                    done();
-                }
-            )
-        })
-    })
-    describe('Do a request', function(){
         before(function(){console.log('Before the second suite');})
         beforeEach(function(){console.log('Before each test case');})
         after(function(){console.log('After the second suite')})
         afterEach(function(){console.log('After each test case')})
-
-        it('Dummy asking for a specific post', function(done){
-            request.get({url: baseUrl + "/posts/1"},
-                function(error, response, body){
-                    expect(response.statusCode).to.equal(200);
-                    response.statusCode.should.equal(200);
-
-                    console.log(body);
-
-                    expect(body).to.be.a('string');
-                    body.should.be.a('string');
-
-                    expect(body).to.include('hello');
-                    body.should.include('hello')
-
-                    expect(body).to.include('world!')
-                    body.should.include('world!');
-
-                    done();
-                }
-            )
+        it('Dummy should assert for fun', function(){
+            assert.equal(false, false);
         })
-
-        it('Should validate the error code', function(done){
-            request.get({url: baseUrl + "/posts/0"},
-                function(error, response, body){
-                    expect(response.statusCode).to.equal(404);
-                    response.statusCode.should.be.equal(404);
-                    done();
-                }
-            )
+        it('Dummy should assert for fun again', function(){
+            assert.equal(false, false);
         })
+    })
+
+    describe('Get', function(){
+        
+        before(() => {
+        })
+        beforeEach(function(){
+
+        })
+        after(function(){
+            
+        })
+        afterEach(function(){
+            
+        })
+        describe('Post 0', () => {
+            before((done) => {
+                DoTheRequest(0, done);
+            })
+            it('Response should be 404',function(){
+                response.statusCode.should.equal(404);
+            })
+            it('Body should be a string', function(){
+                body.should.be.a('string');
+            })
+            it('Body shold not include \'hello world!\'', function(){
+                body.should.not.include('hello world!');
+            })
+
+            it('Response expect to be equal 404',function(){
+                expect(response.statusCode).to.be.equal(404);
+            })
+            it('Body expect be a string', function(){
+                expect(body).to.be.a('string');
+            })
+            it('Body expect not include \'hello world!\'', function(){
+                expect(body).to.not.include('hello world!');
+            })
+        });
+        describe('Post 1', () => {
+            before(function(done){
+                DoTheRequest(1, done);
+            })
+            it('Response should be 200',function(){
+                response.statusCode.should.equal(200);
+            })
+            it('Body should be a string', function(){
+                body.should.be.a('string');
+            })
+            it('Body shold include \'hello world!\'', function(){
+                body.should.include('hello world!');
+            })
+        });
+        
     })
 })
