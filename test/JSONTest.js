@@ -53,15 +53,17 @@ describe ('JSON', function(){
                 function(error, response, body){
                     expect(response.statusCode).to.equal(200);
                     response.statusCode.should.equal(200);
-                    var bod = response.body;
-                    console.log(bod);
-                    //body.should.incl('world');
 
-                    expect(bod).to.be.a('string');
-                    bod.should.be.a('string');
+                    console.log(body);
 
-                    expect(response.body).to.include('hello');
-                    bod.should.include('world')
+                    expect(body).to.be.a('string');
+                    body.should.be.a('string');
+
+                    expect(body).to.include('hello');
+                    body.should.include('hello')
+
+                    expect(body).to.include('world!')
+                    body.should.include('world!');
 
                     done();
                 }
@@ -72,6 +74,7 @@ describe ('JSON', function(){
             request.get({url: baseUrl + "/posts/0"},
                 function(error, response, body){
                     expect(response.statusCode).to.equal(404);
+                    response.statusCode.should.be.equal(404);
                     done();
                 }
             )
