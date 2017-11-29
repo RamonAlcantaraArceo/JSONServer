@@ -24,20 +24,21 @@ describe ('JSON', function(){
         )
     }
 
-    function Pending(){
+    function GetPosts(){
+
         it('Response should be 200',function(){
             response.statusCode.should.equal(200);
         });
+
         it('Body should be a string', function(){
             body.should.be.a('string');
         });
+
         it('Body should include \'hello world!\'', function(){
             body.should.include('hello world!');
         });
 
-        [1,2].forEach(function(value){
-            it('Response ' + value + ' expect to be 200');
-        });
+        it('Response expect to be 200');
         it('Body expect to be a string');
         it('Body expect to include \'hello world!\'');
     }
@@ -106,7 +107,7 @@ describe ('JSON', function(){
                 DoTheRequest(1, done);
             });
 
-            Pending();
+            GetPosts();
         });
 
         describe('Post 2', () => {
@@ -115,7 +116,7 @@ describe ('JSON', function(){
                 DoTheRequest(2, done);
             });
 
-            Pending();
+            GetPosts();
         });
     })
 })
