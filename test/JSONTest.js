@@ -24,6 +24,24 @@ describe ('JSON', function(){
         )
     }
 
+    function Pending(){
+        it('Response should be 200',function(){
+            response.statusCode.should.equal(200);
+        });
+        it('Body should be a string', function(){
+            body.should.be.a('string');
+        });
+        it('Body should include \'hello world!\'', function(){
+            body.should.include('hello world!');
+        });
+
+        [1,2].forEach(function(value){
+            it('Response ' + value + ' expect to be 200');
+        });
+        it('Body expect to be a string');
+        it('Body expect to include \'hello world!\'');
+    }
+
     // this is our global timeout for get requests.
     // 600 makes it fleaky
     var getTimeout = this.timeout(1000);
@@ -86,21 +104,18 @@ describe ('JSON', function(){
             before(function(done){
                 getTimeout;
                 DoTheRequest(1, done);
-            })
-            it('Response should be 200',function(){
-                response.statusCode.should.equal(200);
-            })
-            it('Body should be a string', function(){
-                body.should.be.a('string');
-            })
-            it('Body should include \'hello world!\'', function(){
-                body.should.include('hello world!');
-            })
+            });
 
-            it('Response expect to be 200');
-            it('Body expect to be a string');
-            it('Body expect to include \'hello world!\'')
+            Pending();
         });
-        
+
+        describe('Post 2', () => {
+            before(function(done){
+                getTimeout;
+                DoTheRequest(2, done);
+            });
+
+            Pending();
+        });
     })
 })
