@@ -11,7 +11,10 @@ describe ('JSON', function(){
     var error;
     var body;
     function DoTheRequest(postId, done){
-        request.get({url: baseUrl + "/posts/" + postId},
+        var options = {
+            url: baseUrl + "/posts/" + postId
+        }
+        request.get(options,
             function(_error, _response, _body){
                 error = _error;
                 response = _response;
@@ -20,6 +23,10 @@ describe ('JSON', function(){
             }
         )
     }
+
+    // this is our global timeout for get requests.
+    // 600 makes it fleaky
+    var getTimeout = this.timeout(1000);
 
     before(function(){console.log('This is the uber before once.')})
     after(function(){console.log('This is the uber after once.')})
@@ -49,8 +56,10 @@ describe ('JSON', function(){
         afterEach(function(){
             
         })
+
         describe('Post 0', () => {
             before((done) => {
+                getTimeout;
                 DoTheRequest(0, done);
             })
             it('Response should be 404',function(){
@@ -75,6 +84,7 @@ describe ('JSON', function(){
         });
         describe('Post 1', () => {
             before(function(done){
+                getTimeout;
                 DoTheRequest(1, done);
             })
             it('Response should be 200',function(){
@@ -83,9 +93,13 @@ describe ('JSON', function(){
             it('Body should be a string', function(){
                 body.should.be.a('string');
             })
-            it('Body shold include \'hello world!\'', function(){
+            it('Body should include \'hello world!\'', function(){
                 body.should.include('hello world!');
             })
+
+            it('Response expect to be 200');
+            it('Body expect to be a string');
+            it('Body expect to include \'hello world!\'')
         });
         
     })
