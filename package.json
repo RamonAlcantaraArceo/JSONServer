@@ -24,6 +24,12 @@
   "devDependencies": {
     "chai": "^4.1.2",
     "mocha": "^4.0.1",
-    "request": "^2.83.0"
+    "request": "^2.83.0",
+    "z-schema": "^3.12.0",
+    "dotenv": "^1.2.0"
+  },
+  "dependencies": {
+    "swagger-test": "^0.7.3",
+    "swagger-test-templates": "^1.4.3"
   }
 }

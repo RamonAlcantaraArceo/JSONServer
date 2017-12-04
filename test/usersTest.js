@@ -6,7 +6,7 @@ const request = require("request");
 
 const myBaseUrl = "http://localhost:8000/v1/";
 
-function DoRETSRequest(_baseUrl, done, f){
+function DoRETSRequest(_baseUrl, done, expectedStatusCode){
     var options = {
         url: baseUrl = _baseUrl
     }
@@ -15,7 +15,7 @@ function DoRETSRequest(_baseUrl, done, f){
             error = _error;
             response = _response;
             body = _body;
-            response.statusCode.should.equal(f)
+            response.statusCode.should.equal(expectedStatusCode)
             done();
         }
     )
@@ -24,11 +24,11 @@ function DoRETSRequest(_baseUrl, done, f){
 describe('RETS', function(){
     describe('Users', function(){
         it('A query on users on the local data base', function(done) {
-            DoRETSRequest(myBaseUrl + "rets-users", done,200)
+            DoRETSRequest(myBaseUrl + "rets-users", done, 200)
         })
 
-        it('A query on users on the local data base', function(done) {
-            DoRETSRequest(myBaseUrl + "rets-userz", done,404)
+        it('A query on users on the local data base not found', function(done) {
+            DoRETSRequest(myBaseUrl + "rets-userz", done, 404)
         })
     })
 })

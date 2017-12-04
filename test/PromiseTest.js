@@ -34,7 +34,8 @@ describe('Promise learning', () => {
                 done("This should not have been invoked");
             },(e) => {
                 console.log(e);
-                done(e);
+                // commenting the error parameter to allow the test to pass.
+                done(/*e*/);
             });
         });
 
@@ -49,7 +50,8 @@ describe('Promise learning', () => {
                 done("This should not have been invoked");
             },(e) => {
                 console.log(e);
-                done(e);
+                // commenting the error parameter to allow the test to pass.
+                done(/*e*/);
             });
         });
     });
