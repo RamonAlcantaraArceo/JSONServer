@@ -21,7 +21,7 @@ function DoRETSRequest(_baseUrl, done, expectedStatusCode){
     )
 }
 
-describe('RETS', function(){
+describe.skip('RETS', function(){
     describe('Users', function(){
         it('A query on users on the local data base', function(done) {
             DoRETSRequest(myBaseUrl + "rets-users", done, 200)

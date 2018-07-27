@@ -23,35 +23,30 @@ describe('Promise learning', () => {
     });
 
     describe('The second promise', function TheSecondDescribe() {
-        it('A more elaborate promise that can fail', function(done) {
+        it('A more elaborate promise that can fail', () => {
             this.timeout(testTimeout);
             const wait = time => new Promise(function(resolve,reject) {
                 assert.isTrue(false);
             });
             
-            wait(testDelay).then(() => {
-                console.log('Hello!');
-                done("This should not have been invoked");
+            return wait(testDelay).then(() => {
+                assert.isFalse(true);
             },(e) => {
-                console.log(e);
-                // commenting the error parameter to allow the test to pass.
-                done(/*e*/);
+                assert.isDefined(e)
             });
         });
 
-        it('A more elaborate promise that can fail, slightly different', function(done) {
+        it('A more elaborate promise that can fail, slightly different', () => {
             this.timeout(testTimeout);
             const wait = time => new Promise(function(resolve,reject) {
                 setTimeout(reject("I just wanted to reject this"), time);
             });
             
-            wait(testDelay).then(() => {
-                console.log('Hello!');
-                done("This should not have been invoked");
+            return wait(testDelay).then(() => {
+                assert.isFalse(true);
             },(e) => {
                 console.log(e);
-                // commenting the error parameter to allow the test to pass.
-                done(/*e*/);
+                assert.isDefined(e)
             });
         });
     });
