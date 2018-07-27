@@ -45,7 +45,7 @@ describe ('JSON', function(){
 
     // this is our global timeout for get requests.
     // 600 makes it fleaky
-    var getTimeout = this.timeout(1000);
+    var getTimeout = this.timeout(2000);
 
     before(function(){console.log('This is the uber before once.')})
     after(function(){console.log('This is the uber after once.')})

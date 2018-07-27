@@ -11,14 +11,11 @@ const testDelay = 300
 
 describe('Promise learning', () => {
     describe('The first promise', () => {
-        it('A simple positive case', (done) => {
+        it('A simple positive case', () => {
             const wait = time => new Promise((resolve) => {
                 setTimeout(resolve, time);
             });
-            wait(testDelay).then(() => {
-                console.log('Hello!');
-                done();
-            });
+            return wait(testDelay).then(() => assert.isTrue(true), () =>  assert.isTrue(false) );
         }).timeout(testTimeout);
     });
 
