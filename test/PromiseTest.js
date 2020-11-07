@@ -4,7 +4,7 @@ const expect = require('chai').expect;
 const should = require('chai').should();
 const request = require("request");
 
-const baseUrl = "https://my-json-server.typicode.com/ramon-alcantara-move/JSONServer"
+const baseUrl = "https://my-json-server.typicode.com/RamonAlcantaraArceo/JSONServer"
 
 const testTimeout = 2000;
 const testDelay = 300

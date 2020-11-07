@@ -1,14 +1,13 @@
 {
   "name": "jsonserver",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A JSON Server to learn Mocha Chai and REST",
-  "main": "app.js",
   "scripts": {
     "test": "mocha"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ramon-alcantara-move/JSONServer.git"
+    "url": "git+https://github.com/RamonAlcantaraArceo/JSONServer.git"
   },
   "keywords": [
     "Mocha",
@@ -18,9 +17,9 @@
   "author": "Ramon Alcantara",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ramon-alcantara-move/JSONServer/issues"
+    "url": "https://github.com/RamonAlcantaraArceo/JSONServer/issues"
   },
-  "homepage": "https://github.com/ramon-alcantara-move/JSONServer#readme",
+  "homepage": "https://github.com/RamonAlcantaraArceo/JSONServer#readme",
   "devDependencies": {
     "chai": "^4.2.0",
     "mocha": "^4.1.0",
